@@ -23,7 +23,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         sliderAdapter = new SliderAdapter(this);
         binding.vpSlider.setAdapter(sliderAdapter);
         binding.dotsIndicator.setViewPager2(binding.vpSlider);
-        
+
         binding.vpSlider.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
