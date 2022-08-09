@@ -1,12 +1,17 @@
 package com.itcraftsolution.expansemanager;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.itcraftsolution.expansemanager.Adapters.SliderAdapter;
+import com.itcraftsolution.expansemanager.Fragments.UserDetailsFragment;
 import com.itcraftsolution.expansemanager.databinding.ActivityOnBoardingBinding;
 
 public class OnBoardingActivity extends AppCompatActivity {
@@ -24,6 +29,18 @@ public class OnBoardingActivity extends AppCompatActivity {
         binding.vpSlider.setAdapter(sliderAdapter);
         binding.dotsIndicator.setViewPager2(binding.vpSlider);
 
+        binding.btnSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.frContainer.setVisibility(View.VISIBLE);
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.frContainer, new UserDetailsFragment());
+                fragmentTransaction.commit();
+                binding.btnSkip.setVisibility(View.GONE);
+                binding.vpSlider.setVisibility(View.GONE);
+                binding.dotsIndicator.setVisibility(View.GONE);
+            }
+        });
         binding.vpSlider.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -35,9 +52,9 @@ public class OnBoardingActivity extends AppCompatActivity {
                 super.onPageSelected(position);
                 if(position == 2)
                 {
-                    binding.txSkip.setText("Next");
+                    binding.btnSkip.setText("Next");
                 }else{
-                    binding.txSkip.setText("Skip");
+                    binding.btnSkip.setText("Skip");
                 }
             }
 

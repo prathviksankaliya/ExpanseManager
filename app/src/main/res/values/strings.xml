@@ -3,4 +3,7 @@
     <string name="onBoarding1">Add your daily expense in one touch &amp; get your daily reports via categorized charts</string>
     <string name="onBoarding2">Take control of your finances Allocate money to different priorities</string>
     <string name="onBoarding3">We helps you stay focused on tracking your spend and reach your financial goals</string>
+
+    <string name="UserDetailsTitle">Welcome to </string>
+    <string name="UserDetailsTitle2">Expanse Manager</string>
 </resources>

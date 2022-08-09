@@ -3,9 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/drawable/edit_bg.xml" value="0.149" />
+        <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.145" />
+        <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/font/.xml" value="0.2759259259259259" />
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/activity_main.xml" value="0.2604166666666667" />
-        <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/activity_on_boarding.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/activity_on_boarding.xml" value="0.264" />
+        <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/fragment_user_details.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/slide_layout.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/theme_dialog_sample.xml" value="0.2734375" />
+        <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/toolbar_sample.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/menu/toolbar_menu.xml" value="0.2734375" />
       </map>
     </option>
   </component>
