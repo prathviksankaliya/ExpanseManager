@@ -6,16 +6,18 @@ import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
+
+import com.itcraftsolution.expansemanager.databinding.CurrencyDialogSampleBinding;
 import com.itcraftsolution.expansemanager.databinding.ThemeDialogSampleBinding;
 
-public class ThemeDialog extends Dialog {
+public class CurrencyDialog extends Dialog {
 
     private Context context;
-    private ThemeDialogSampleBinding binding;
+    private CurrencyDialogSampleBinding binding;
 
-    public ThemeDialog(@NonNull Context context) {
+    public CurrencyDialog(@NonNull Context context) {
         super(context);
         this.context = context;
     }
@@ -23,33 +25,21 @@ public class ThemeDialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ThemeDialogSampleBinding.inflate(getLayoutInflater());
+        binding = CurrencyDialogSampleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.rdGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
                 int checkRadiobuttonId = radioGroup.getCheckedRadioButtonId();
 
                 RadioButton selectedBtn = radioGroup.findViewById(checkRadiobuttonId);
                 if(selectedBtn.isChecked())
                 {
-                    Toast.makeText(context, ""+selectedBtn.getText().toString(), Toast.LENGTH_SHORT).show();
-                    if(selectedBtn.getText().toString().equals("Light Theme"))
-                    {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    }else if(selectedBtn.getText().toString().equals("Dark Theme")){
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    }else{
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                    }
-
+                    Toast.makeText(context, "Choose "+ selectedBtn.getText().toString(), Toast.LENGTH_SHORT).show();
                 }
-
                 dismiss();
             }
         });
-
     }
 }

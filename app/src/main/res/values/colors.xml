@@ -14,4 +14,6 @@
     <color name="transparaWhite">#B5B5B5</color>
     <color name="lightBlack">#4D4D4D</color>
     <color name="lightwhite">#E8E9C9</color>
+    <color name="red">#EDF44336</color>
+
 </resources>

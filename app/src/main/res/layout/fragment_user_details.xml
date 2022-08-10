@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.UserDetailsFragment">
@@ -49,24 +50,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_16mdp"
-        android:hint="Enter Your Name"
         android:layout_marginTop="@dimen/_16mdp"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image"
-        tools:layout_editor_absoluteX="21dp">
+        android:hint="Enter Your Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/opensanssemibold"
-            />
+            android:fontFamily="@font/opensanssemibold" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
-        android:id="@+id/llMonth"
+        android:id="@+id/llCurrency"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginTop="@dimen/_16mdp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@+id/edName"
         app:layout_constraintStart_toStartOf="@+id/edName"
         app:layout_constraintTop_toBottomOf="@+id/edName">
@@ -75,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensanssemibold"
-            android:text="Month Start Date"
+            android:text="Currency"
             android:textColor="@color/black"
             android:textSize="@dimen/_14font_mdp" />
 
@@ -84,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensansregular"
-            android:text="1"
+            android:text="₹ Rupee"
             android:textColor="@color/lightBlack" />
     </LinearLayout>
 
@@ -92,11 +95,11 @@
         android:id="@+id/llTheme"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginTop="@dimen/_16mdp"
-        app:layout_constraintEnd_toEndOf="@+id/llMonth"
-        app:layout_constraintStart_toStartOf="@+id/llMonth"
-        app:layout_constraintTop_toBottomOf="@+id/llMonth">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/llCurrency"
+        app:layout_constraintStart_toStartOf="@+id/llCurrency"
+        app:layout_constraintTop_toBottomOf="@+id/llCurrency">
 
         <TextView
             android:layout_width="wrap_content"
@@ -116,16 +119,15 @@
     </LinearLayout>
 
 
-
     <Button
+        android:id="@+id/btnNext"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
-        android:text="Next"
-        android:layout_marginTop="@dimen/_16mdp"
         android:layout_marginBottom="@dimen/_16mdp"
+        android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/llMonth"
-        app:layout_constraintStart_toStartOf="@+id/llMonth"
-        app:layout_constraintTop_toBottomOf="@+id/llMonth" />
+        app:layout_constraintEnd_toEndOf="@+id/llTheme"
+        app:layout_constraintStart_toStartOf="@+id/llTheme"
+        app:layout_constraintTop_toBottomOf="@+id/llTheme" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

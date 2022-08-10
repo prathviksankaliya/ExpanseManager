@@ -15,7 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.Snackbar;
+import com.itcraftsolution.expansemanager.Dialogs.CurrencyDialog;
 import com.itcraftsolution.expansemanager.Dialogs.ThemeDialog;
 import com.itcraftsolution.expansemanager.R;
 import com.itcraftsolution.expansemanager.databinding.FragmentUserDetailsBinding;
@@ -41,26 +42,40 @@ public class UserDetailsFragment extends Fragment {
         binding.llTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-//
-//                builder.setTitle("Choose any Theme");
-//                builder.setSingleChoiceItems(singleItems, checkedItem, new DialogInterface
-//                        .OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int item) {
-//                        Toast.makeText(requireContext(), ""+ singleItems[item], Toast.LENGTH_SHORT).show();
-//                        dialog.dismiss();
-//                    }
-//                });
-//                AlertDialog alert = builder.create();
-//                alert.show();
 
                 ThemeDialog dialog = new ThemeDialog(requireContext());
                 dialog.setCancelable(false);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                dialog.getWindow().setGravity(Gravity.TOP);
                 dialog.show();
             }
         });
+
+        binding.llCurrency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CurrencyDialog dialog = new CurrencyDialog(requireContext());
+                dialog.setCancelable(false);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        binding.btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(binding.edNameText.getText().toString().length() <= 2)
+                {
+                    Snackbar.make(binding.layout,"Name must be Minimum 4 characters", Snackbar.LENGTH_LONG)
+                            .setBackgroundTint(getResources().getColor(R.color.red))
+                            .setTextColor(getResources().getColor(R.color.white))
+                            .show();
+                    binding.edNameText.requestFocus();
+                }else{
+                    Toast.makeText(requireContext(), "Name : "+binding.edNameText.getText(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         return binding.getRoot();
     }
 }
