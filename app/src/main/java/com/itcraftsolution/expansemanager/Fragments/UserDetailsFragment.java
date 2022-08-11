@@ -1,10 +1,7 @@
 package com.itcraftsolution.expansemanager.Fragments;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -12,6 +9,11 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -19,14 +21,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
-import android.provider.MediaStore;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
@@ -36,6 +30,7 @@ import com.itcraftsolution.expansemanager.R;
 import com.itcraftsolution.expansemanager.databinding.FragmentUserDetailsBinding;
 import com.yalantis.ucrop.UCrop;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.UUID;
 
@@ -52,9 +47,11 @@ public class UserDetailsFragment extends Fragment {
     private int checkedItem = -1;
     private static final int PERMISSION_ID = 44;
     private ActivityResultLauncher<String> getImage;
-    private String destPath;
+    private String destPath, encodeImageString;
     private Uri photoUri;
     private  SharedPreferences spf;
+    private Bitmap bitmap;
+    private boolean CheckImage = false;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,7 +61,6 @@ public class UserDetailsFragment extends Fragment {
 
         spf = requireContext().getSharedPreferences("UserDetails", Context.MODE_PRIVATE);
 
-//        loadData();
 
         binding.llTheme.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +110,7 @@ public class UserDetailsFragment extends Fragment {
                             .show();
                     binding.edNameText.requestFocus();
                 }else{
+
                     Toast.makeText(requireContext(), "Name : "+binding.edNameText.getText(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -140,13 +137,18 @@ public class UserDetailsFragment extends Fragment {
                             .start(requireContext(), UserDetailsFragment.this);
 
                     Glide.with(requireContext()).load(photoUri).into(binding.igProfile);
-                    File file = new File(photoUri.getPath());
 
-                    Toast.makeText(requireContext(), ""+file.getPath(), Toast.LENGTH_LONG).show();
+//                    try {
+//                        InputStream inputStream = requireContext().getContentResolver().openInputStream(photoUri);
+//                        bitmap = BitmapFactory.decodeStream(inputStream);
+//                        encodeBitmapImage(bitmap);
+//                        CheckImage = true;
+//
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    }
 
-//                    SharedPreferences.Editor edit = spf.edit();
-//                    edit.putString("photoUri", String.valueOf(photoUri));
-//                    edit.apply();
+
 
                 }
             }
@@ -166,12 +168,19 @@ public class UserDetailsFragment extends Fragment {
         return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
     }
 
-    private void loadData()
-    {
-        photoUri = Uri.parse(spf.getString("photoUri", null));
-        if(photoUri != null)
-        {
-            Glide.with(requireContext()).load(photoUri).into(binding.igProfile);
-        }
+
+    private void encodeBitmapImage(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 70, byteArrayOutputStream);
+        binding.igEditProfile.setImageBitmap(bitmap);
+        byte[] bytesofimage = byteArrayOutputStream.toByteArray();
+        encodeImageString = android.util.Base64.encodeToString(bytesofimage, Base64.DEFAULT);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Toast.makeText(requireContext(), "run", Toast.LENGTH_SHORT).show();
+        binding.txCurrency.setText(spf.getString("currency", null));
     }
 }

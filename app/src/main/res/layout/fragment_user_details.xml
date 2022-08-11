@@ -46,12 +46,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edName"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/LoginTextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_16mdp"
         android:layout_marginTop="@dimen/_16mdp"
         android:hint="Enter Your Name"
+        android:textColorHint="@color/lightBlack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,8 +61,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edNameText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/opensanssemibold" />
+            android:layout_height="?attr/actionBarSize"
+            android:fontFamily="@font/opensanssemibold"
+            android:textColor="@color/lightBlack"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -83,7 +86,7 @@
             android:textSize="@dimen/_14font_mdp" />
 
         <TextView
-            android:id="@+id/txMonthDate"
+            android:id="@+id/txCurrency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensansregular"
