@@ -44,7 +44,6 @@ public class ThemeDialog extends Dialog {
                     }else{
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                     }
-
                 }
 
                 dismiss();

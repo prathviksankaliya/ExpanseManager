@@ -11,8 +11,10 @@
 
 
     <color name="green">#228D57</color>
+    <color name="lightGreen">#80e27e</color>
     <color name="transparaWhite">#B5B5B5</color>
     <color name="lightBlack">#4D4D4D</color>
+    <color name="DarkBlack">#CB000000</color>
     <color name="lightwhite">#E8E9C9</color>
     <color name="red">#EDF44336</color>
 

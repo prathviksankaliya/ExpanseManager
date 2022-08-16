@@ -1,10 +1,13 @@
 package com.itcraftsolution.expansemanager.Fragments;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -13,25 +16,27 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
-import com.itcraftsolution.expansemanager.Dialogs.CurrencyDialog;
-import com.itcraftsolution.expansemanager.Dialogs.ThemeDialog;
+import com.itcraftsolution.expansemanager.MainActivity;
 import com.itcraftsolution.expansemanager.R;
 import com.itcraftsolution.expansemanager.databinding.FragmentUserDetailsBinding;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.UUID;
 
 
@@ -52,6 +57,8 @@ public class UserDetailsFragment extends Fragment {
     private  SharedPreferences spf;
     private Bitmap bitmap;
     private boolean CheckImage = false;
+    private Dialog dialogCurrency, dialogTheme;
+    private RadioGroup rdGropeCurrency, rdGropeTheme;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,26 +67,27 @@ public class UserDetailsFragment extends Fragment {
         binding = FragmentUserDetailsBinding.inflate(getLayoutInflater());
 
         spf = requireContext().getSharedPreferences("UserDetails", Context.MODE_PRIVATE);
+        dialogCurrency = new Dialog(requireContext());
+        dialogCurrency.setContentView(R.layout.currency_dialog_sample);
+        dialogTheme = new Dialog(requireContext());
+        dialogTheme.setContentView(R.layout.theme_dialog_sample);
 
+        if(spf.getString("userProfile", null) != null)
+        {
+            encodeImageStringBitmap(spf.getString("userProfile", null));
+        }
 
         binding.llTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                ThemeDialog dialog = new ThemeDialog(requireContext());
-                dialog.setCancelable(false);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+                getDialogTheme();
             }
         });
 
         binding.llCurrency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CurrencyDialog dialog = new CurrencyDialog(requireContext());
-                dialog.setCancelable(false);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+                getDialogCurrency();
             }
         });
 
@@ -92,10 +100,6 @@ public class UserDetailsFragment extends Fragment {
                 }else{
                     requestStoragePermission();
                 }
-
-//                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-//                photoPickerIntent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                startActivityForResult(Intent.createChooser(photoPickerIntent, "Select Picture"), PERMISSION_ID);
             }
         });
 
@@ -109,9 +113,23 @@ public class UserDetailsFragment extends Fragment {
                             .setTextColor(getResources().getColor(R.color.white))
                             .show();
                     binding.edNameText.requestFocus();
-                }else{
-
-                    Toast.makeText(requireContext(), "Name : "+binding.edNameText.getText(), Toast.LENGTH_SHORT).show();
+                }else if(!CheckImage || binding.igProfile.getDrawable() == null)
+                {
+                    Snackbar.make(binding.layout,"Please set your profile picture", Snackbar.LENGTH_LONG)
+                            .setBackgroundTint(getResources().getColor(R.color.red))
+                            .setTextColor(getResources().getColor(R.color.white))
+                            .show();
+                    binding.igProfile.requestFocus();
+                }
+                else{
+                    SharedPreferences.Editor editor = spf.edit();
+                    editor.putString("userName", binding.edNameText.getText().toString());
+                    editor.putString("userCurrency", binding.txCurrency.getText().toString());
+                    editor.putBoolean("userProfile", true);
+                    editor.apply();
+                    Intent intent = new Intent(requireContext(), MainActivity.class);
+                    startActivity(intent);
+                    requireActivity().finishAffinity();
                 }
             }
         });
@@ -136,20 +154,17 @@ public class UserDetailsFragment extends Fragment {
                             .withMaxResultSize(1080, 720)
                             .start(requireContext(), UserDetailsFragment.this);
 
-                    Glide.with(requireContext()).load(photoUri).into(binding.igProfile);
+//                    Glide.with(requireContext()).load(photoUri).into(binding.igProfile);
 
-//                    try {
-//                        InputStream inputStream = requireContext().getContentResolver().openInputStream(photoUri);
-//                        bitmap = BitmapFactory.decodeStream(inputStream);
-//                        encodeBitmapImage(bitmap);
-//                        CheckImage = true;
-//
-//                    } catch (FileNotFoundException e) {
-//                        e.printStackTrace();
-//                    }
+                    try {
+                        InputStream inputStream = requireContext().getContentResolver().openInputStream(photoUri);
+                        bitmap = BitmapFactory.decodeStream(inputStream);
+                        encodeBitmapImageString(bitmap);
+                        CheckImage = true;
 
-
-
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -162,25 +177,93 @@ public class UserDetailsFragment extends Fragment {
         ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_ID);
     }
 
-
     // Check Permission
     private boolean checkStoragePermission() {
         return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
     }
 
-
-    private void encodeBitmapImage(Bitmap bitmap) {
+    private void encodeBitmapImageString(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 70, byteArrayOutputStream);
-        binding.igEditProfile.setImageBitmap(bitmap);
+        binding.igProfile.setImageBitmap(bitmap);
         byte[] bytesofimage = byteArrayOutputStream.toByteArray();
         encodeImageString = android.util.Base64.encodeToString(bytesofimage, Base64.DEFAULT);
+        SharedPreferences.Editor editor = spf.edit();
+        editor.putString("userImage", encodeImageString);
+        editor.apply();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        Toast.makeText(requireContext(), "run", Toast.LENGTH_SHORT).show();
-        binding.txCurrency.setText(spf.getString("currency", null));
+    private void encodeImageStringBitmap(String encodeImageString)
+    {
+        byte[] encodeBytes = Base64.decode(encodeImageString, Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(encodeBytes, 0, encodeBytes.length);
+        binding.igProfile.setImageBitmap(bitmap);
     }
+
+
+    private void getDialogCurrency()
+    {
+
+        dialogCurrency.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogCurrency.show();
+        rdGropeCurrency = dialogCurrency.findViewById(R.id.rdGroup);
+
+        rdGropeCurrency.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                int checkRadiobuttonId = radioGroup.getCheckedRadioButtonId();
+
+                RadioButton selectedBtn = radioGroup.findViewById(checkRadiobuttonId);
+                if(selectedBtn.isChecked())
+                {
+                    selectedBtn.setChecked(true);
+                    binding.txCurrency.setText(selectedBtn.getText());
+                    dialogCurrency.dismiss();
+                }
+            }
+        });
+    }
+
+    private void getDialogTheme()
+    {
+        dialogTheme.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogTheme.show();
+
+        rdGropeTheme = dialogTheme.findViewById(R.id.rdGroup);
+        rdGropeTheme.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+                int checkRadiobuttonId = radioGroup.getCheckedRadioButtonId();
+
+                RadioButton selectedBtn = radioGroup.findViewById(checkRadiobuttonId);
+                if(selectedBtn.isChecked())
+                {
+                    SharedPreferences.Editor editor = spf.edit();
+                    if(selectedBtn.getText().toString().equals("Light Theme"))
+                    {
+                        selectedBtn.setChecked(true);
+                        editor.putString("userTheme", "Light");
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        requireActivity().recreate();
+                    }else if(selectedBtn.getText().toString().equals("Dark Theme")){
+                        selectedBtn.setChecked(true);
+                        editor.putString("userTheme", "Dark");
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        requireActivity().recreate();
+                    }else{
+                        selectedBtn.setChecked(true);
+                        editor.putString("userTheme", "Device");
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                        requireActivity().recreate();
+                    }
+
+                    editor.apply();
+                    dialogTheme.dismiss();
+                }
+            }
+        });
+    }
+
+
 }

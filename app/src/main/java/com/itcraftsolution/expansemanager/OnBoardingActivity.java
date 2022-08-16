@@ -1,8 +1,5 @@
 package com.itcraftsolution.expansemanager;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -41,6 +38,7 @@ public class OnBoardingActivity extends AppCompatActivity {
                 binding.dotsIndicator.setVisibility(View.GONE);
             }
         });
+
         binding.vpSlider.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -64,5 +62,4 @@ public class OnBoardingActivity extends AppCompatActivity {
             }
         });
     }
-
 }
