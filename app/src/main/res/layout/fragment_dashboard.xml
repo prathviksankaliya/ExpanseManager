@@ -1,14 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.DashboardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Dashboard" />
+        android:layout_height="@dimen/_150mdp"
+        android:background="@drawable/dashboard_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/igProfile"
+            android:layout_width="@dimen/_45mdp"
+            android:layout_height="@dimen/_45mdp"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:layout_marginTop="@dimen/_10mdp"
+            android:padding="@dimen/_4mdp"
+            android:src="@drawable/me"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/white_stroke"
+            android:padding="@dimen/_10mdp"
+            app:layout_constraintBottom_toBottomOf="@+id/igProfile"
+            app:layout_constraintEnd_toEndOf="@+id/igProfile"
+            app:layout_constraintStart_toStartOf="@+id/igProfile"
+            app:layout_constraintTop_toTopOf="@+id/igProfile" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:fontFamily="@font/opensanssemibold"
+            android:text="Prathvik"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18font_mdp"
+            app:layout_constraintBottom_toBottomOf="@+id/igProfile"
+            app:layout_constraintStart_toEndOf="@+id/igProfile"
+            app:layout_constraintTop_toTopOf="@+id/igProfile" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/_10mdp"
+            android:src="@drawable/ic_baseline_settings_24"
+            app:layout_constraintBottom_toBottomOf="@+id/igProfile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/igProfile" />
+
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6mdp"
+            android:fontFamily="@font/opensanssemibold"
+            android:text="Total Balance"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11font_mdp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/view2"
+            app:layout_constraintTop_toBottomOf="@+id/igProfile" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensansbold"
+            android:text="₹3,20,65,798.00"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_22font_mdp"
+            app:layout_constraintEnd_toEndOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12mdp"
+        app:cardCornerRadius="@dimen/_12mdp"
+        app:cardElevation="@dimen/_10mdp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_7mdp"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="@dimen/_18mdp"
+                android:layout_height="@dimen/_18mdp"
+                android:background="@drawable/edit_bg"
+                android:padding="@dimen/_3mdp"
+                android:layout_margin="@dimen/_6mdp"
+                android:src="@drawable/profit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6mdp"
+                android:fontFamily="@font/opensanssemibold"
+                android:text="Income"
+                android:textColor="@color/lightBlack"
+                android:textSize="@dimen/_15font_mdp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3mdp"
+                android:fontFamily="@font/opensansbold"
+                android:maxLines="1"
+                android:text="₹3,20,579"
+                android:layout_marginBottom="@dimen/_6mdp"
+                android:textColor="@color/lightBlack"
+                android:textSize="@dimen/_17font_mdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="@dimen/_18mdp"
+                android:layout_height="@dimen/_18mdp"
+                android:background="@drawable/edit_bg"
+                android:padding="@dimen/_3mdp"
+                android:layout_marginEnd="@dimen/_6mdp"
+                android:src="@drawable/loss"
+                app:layout_constraintEnd_toStartOf="@+id/textView8"
+                app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+            <TextView
+
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8mdp"
+                android:fontFamily="@font/opensanssemibold"
+                android:text="Expenses"
+                android:textColor="@color/lightBlack"
+                android:textSize="@dimen/_15font_mdp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:fontFamily="@font/opensansbold"
+                android:text="₹3,20,40,342"
+                android:textColor="@color/lightBlack"
+                android:textSize="@dimen/_17font_mdp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView9"
+                app:layout_constraintEnd_toEndOf="@+id/textView8"
+                app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
