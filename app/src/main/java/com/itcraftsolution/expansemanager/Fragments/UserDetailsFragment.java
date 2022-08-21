@@ -72,10 +72,7 @@ public class UserDetailsFragment extends Fragment {
         dialogTheme = new Dialog(requireContext());
         dialogTheme.setContentView(R.layout.theme_dialog_sample);
 
-        if(spf.getString("userProfile", null) != null)
-        {
-            encodeImageStringBitmap(spf.getString("userProfile", null));
-        }
+        getProfile();
 
         binding.llTheme.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +96,18 @@ public class UserDetailsFragment extends Fragment {
                     getImage.launch("image/*");
                 }else{
                     requestStoragePermission();
+                }
+            }
+        });
+
+        binding.igBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(spf.getBoolean("userProfile", false))
+                {
+                    getParentFragmentManager().beginTransaction().remove(UserDetailsFragment.this).replace(R.id.frMainContainer, new DashboardFragment()).addToBackStack(null).commit();
+                }else{
+                    getParentFragmentManager().beginTransaction().remove(UserDetailsFragment.this).replace(R.id.frContainer, new OnBoardingFragment()).addToBackStack(null).commit();
                 }
             }
         });
@@ -263,6 +272,22 @@ public class UserDetailsFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void getProfile()
+    {
+        if(spf.getBoolean("userProfile", false))
+        {
+            String imgUrl = spf.getString("userImage", null);
+            String name = spf.getString("userName", null);
+            String currency = spf.getString("userCurrency", null);
+            String theme = spf.getString("userTheme", null);
+
+            encodeImageStringBitmap(imgUrl);
+            binding.edNameText.setText(name);
+            binding.txCurrency.setText(currency);
+
+        }
     }
 
 

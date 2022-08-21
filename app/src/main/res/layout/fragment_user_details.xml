@@ -16,8 +16,28 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Profile"
-        app:titleCentered="true" />
+         >
+
+
+        <ImageView
+            android:id="@+id/igBack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_keyboard_backspace_24"
+            android:padding="@dimen/_5mdp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20font_mdp"
+            android:fontFamily="@font/opensanssemibold"
+            android:layout_gravity="center"
+            />
+    </com.google.android.material.appbar.MaterialToolbar>
+
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/igProfile"

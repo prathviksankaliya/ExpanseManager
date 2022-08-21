@@ -4,58 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".OnBoardingActivity">
-
-    <Button
-        android:id="@+id/btnSkip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_6mdp"
-        android:layout_marginBottom="@dimen/_6mdp"
-        android:fontFamily="@font/opensansbold"
-        android:text="Skip"
-        android:background="@android:color/transparent"
-        android:textAllCaps="false"
-        android:textColor="@color/green"
-        android:textSize="@dimen/_14font_mdp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/dots_indicator"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/dots_indicator" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vpSlider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/btnSkip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-        android:id="@+id/dots_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_14mdp"
-        app:dotsColor="@color/black"
-        app:dotsCornerRadius="8dp"
-        app:dotsSize="12dp"
-        android:layout_marginStart="@dimen/_16mdp"
-        android:layout_marginEnd="@dimen/_16mdp"
-        app:dotsSpacing="4dp"
-        app:dotsWidthFactor="2.5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:progressMode="true"
-        app:selectedDotColor="@color/green" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

@@ -7,6 +7,7 @@
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/drawable/dashboard_gradiant.xml" value="0.1925" />
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/drawable/edit_bg.xml" value="0.149" />
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.145" />
+        <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/drawable/ic_baseline_keyboard_backspace_24.xml" value="0.158" />
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1925" />
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/drawable/white_stroke.xml" value="0.1925" />
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/font/.xml" value="0.2759259259259259" />
@@ -15,6 +16,8 @@
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/activity_spalsh.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/currency_dialog_sample.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/fragment_dashboard.xml" value="0.264" />
+        <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/fragment_on_boarding.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/fragment_settings.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/fragment_statestics.xml" value="0.2604166666666667" />
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/fragment_user_details.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Shadow/AndroidStudioProjects/ITCraftSolution/ExpanseManager/app/src/main/res/layout/month_dialog_sample.xml" value="0.2734375" />
