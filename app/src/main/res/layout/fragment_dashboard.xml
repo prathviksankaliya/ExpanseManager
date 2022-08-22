@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_150mdp"
+        android:layout_height="wrap_content"
         android:background="@drawable/dashboard_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -68,14 +68,16 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_6mdp"
             android:fontFamily="@font/opensanssemibold"
             android:text="Total Balance"
             android:textColor="@color/white"
             android:textSize="@dimen/_11font_mdp"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
             app:layout_constraintEnd_toEndOf="@+id/btnSettings"
-            app:layout_constraintStart_toStartOf="@+id/view2"
-            app:layout_constraintTop_toBottomOf="@+id/igProfile" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/pbDashMoney"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/textView6"
@@ -87,10 +89,40 @@
             android:text="₹3,20,65,798.00"
             android:textColor="@color/white"
             android:textSize="@dimen/_22font_mdp"
+            app:layout_constraintBottom_toBottomOf="@+id/pbDashMoney"
             app:layout_constraintEnd_toEndOf="@+id/btnSettings"
-            app:layout_constraintStart_toStartOf="@+id/igProfile"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/pbDashMoney"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
+        <ProgressBar
+            android:id="@+id/pbDashMoney"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="@dimen/_120mdp"
+            android:layout_height="@dimen/_120mdp"
+            android:layout_marginBottom="@dimen/_42mdp"
+            android:background="@drawable/money_progress_circle"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="60"
+            android:progressDrawable="@drawable/progress_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/igProfile"
+            app:layout_constraintTop_toBottomOf="@+id/igProfile"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/txProgressDigit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensanssemibold"
+            android:text="100%"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_22font_mdp"
+            app:layout_constraintBottom_toBottomOf="@+id/pbDashMoney"
+            app:layout_constraintEnd_toEndOf="@+id/pbDashMoney"
+            app:layout_constraintStart_toStartOf="@+id/pbDashMoney"
+            app:layout_constraintTop_toTopOf="@+id/pbDashMoney" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -214,14 +246,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/dashPieChart"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <!--    <com.github.mikephil.charting.charts.PieChart-->
+    <!--        android:id="@+id/dashPieChart"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/cardView" />-->
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
