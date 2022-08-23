@@ -2,6 +2,7 @@ package com.itcraftsolution.expansemanager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.PagerAdapter;
 
 import android.os.Bundle;
@@ -30,13 +31,26 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.menuDashboard)
                 {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frMainContainer, new DashboardFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frMainContainer, new DashboardFragment()).addToBackStack(null).commit();
                 }else if(item.getItemId() == R.id.menuReport){
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frMainContainer, new StatesticsFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frMainContainer, new StatesticsFragment()).addToBackStack(null).commit();
                 }
                 return true;
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if(binding.bottomNavigationView.getSelectedItemId() == R.id.menuDashboard)
+        {
+            super.onBackPressed();
+        }
+        else {
+            binding.bottomNavigationView.setSelectedItemId(R.id.menuDashboard);
+        }
+
     }
 }

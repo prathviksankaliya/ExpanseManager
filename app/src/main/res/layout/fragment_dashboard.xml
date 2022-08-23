@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/frDashboard"
     tools:context=".Fragments.DashboardFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +40,7 @@
             app:layout_constraintTop_toTopOf="@+id/igProfile" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/txProfileName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10mdp"
@@ -76,7 +77,7 @@
             app:layout_constraintEnd_toEndOf="@+id/btnSettings"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/pbDashMoney"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/txProfileName"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
@@ -86,7 +87,8 @@
             android:fontFamily="@font/opensansbold"
             android:gravity="center"
             android:maxLines="1"
-            android:text="₹3,20,65,798.00"
+            android:text="₹ 3,20,65.00"
+            android:layout_marginStart="@dimen/_3mdp"
             android:textColor="@color/white"
             android:textSize="@dimen/_22font_mdp"
             app:layout_constraintBottom_toBottomOf="@+id/pbDashMoney"
@@ -132,7 +134,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_12mdp"
         app:cardCornerRadius="@dimen/_12mdp"
-        app:cardElevation="@dimen/_10mdp"
+        app:cardElevation="@dimen/_7mdp"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
         app:layout_constraintHorizontal_bias="0.5"
@@ -183,9 +185,9 @@
                 android:layout_marginBottom="@dimen/_6mdp"
                 android:fontFamily="@font/opensansbold"
                 android:maxLines="1"
-                android:text="₹3,20,57946557457"
+                android:text="₹ 3,20,503"
                 android:textColor="@color/lightBlack"
-                android:textSize="@dimen/_17font_mdp"
+                android:textSize="@dimen/_18font_mdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/view3"
                 app:layout_constraintStart_toStartOf="@+id/imageView3"
@@ -221,13 +223,13 @@
                 android:id="@+id/textView10"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="@dimen/_3mdp"
                 android:fontFamily="@font/opensansbold"
                 android:gravity="end"
                 android:maxLines="1"
-                android:text="₹3,20,40,342484733"
+                android:layout_marginStart="@dimen/_3mdp"
+                android:text="₹ 3,20,40,343"
                 android:textColor="@color/lightBlack"
-                android:textSize="@dimen/_17font_mdp"
+                android:textSize="@dimen/_18font_mdp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView9"
                 app:layout_constraintEnd_toEndOf="@+id/textView8"
                 app:layout_constraintStart_toEndOf="@+id/view3"
@@ -246,16 +248,29 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <!--    <com.github.mikephil.charting.charts.PieChart-->
-    <!--        android:id="@+id/dashPieChart"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
 
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.5"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/cardView" />-->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10mdp"
+        android:fontFamily="@font/opensansbold"
+        android:text="Latest Entries"
+        android:textColor="@color/lightBlack"
+        android:textSize="@dimen/_16font_mdp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLatestEntry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3mdp"
+        tools:listitem="@layout/rv_history_sample"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

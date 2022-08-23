@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_12mdp"
+    android:elevation="@dimen/_6mdp"
+    android:layout_margin="@dimen/_6mdp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="@dimen/_75mdp"
+            android:layout_height="0dp"
+            android:background="@drawable/rv_intem_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/igFood"
+                android:layout_width="@dimen/_35mdp"
+                android:layout_height="@dimen/_35mdp"
+                android:src="@drawable/ic_baseline_restaurant_24" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txExpenseName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensansbold"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="Food"
+            android:textColor="@color/lightBlack"
+            android:textSize="@dimen/_16font_mdp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toStartOf="@+id/txDateMonth"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6mdp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/txExpenseName"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/txExpenseName"
+            app:layout_constraintTop_toBottomOf="@+id/txExpenseName">
+
+            <TextView
+                android:id="@+id/txExpenseCurrency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/opensansbold"
+                android:gravity="end"
+                android:text="₹ "
+                android:textSize="@dimen/_13font_mdp" />
+
+            <TextView
+                android:id="@+id/txExpensePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/opensansbold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="40.00"
+                android:textSize="@dimen/_13font_mdp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/txDateMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_9mdp"
+            android:layout_marginEnd="@dimen/_12mdp"
+            android:buttonTint="@color/green"
+            android:fontFamily="@font/opensansbold"
+            android:text="16 Aug"
+            android:textSize="@dimen/_11font_mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/green"
+            android:fontFamily="@font/opensansbold"
+            android:text="2022"
+            android:textSize="@dimen/_11font_mdp"
+            app:layout_constraintEnd_toEndOf="@+id/txDateMonth"
+            app:layout_constraintStart_toStartOf="@+id/txDateMonth"
+            app:layout_constraintTop_toBottomOf="@+id/txDateMonth" />
+
+        <TextView
+            android:id="@+id/txTimeHHMM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12mdp"
+            android:layout_marginBottom="@dimen/_9mdp"
+            android:buttonTint="@color/green"
+            android:fontFamily="@font/opensansbold"
+            android:text="22:21"
+            android:textSize="@dimen/_11font_mdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/txDateMonth"
+            app:layout_constraintStart_toStartOf="@+id/txDateMonth"
+            app:layout_constraintTop_toBottomOf="@+id/txYear" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.cardview.widget.CardView>

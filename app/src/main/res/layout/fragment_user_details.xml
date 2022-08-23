@@ -18,7 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
          >
 
-
         <ImageView
             android:id="@+id/igBack"
             android:layout_width="wrap_content"
@@ -35,6 +34,19 @@
             android:textSize="@dimen/_20font_mdp"
             android:fontFamily="@font/opensanssemibold"
             android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:textColor="@color/white"
+            android:layout_marginEnd="@dimen/_6mdp"
+            android:textSize="@dimen/_15font_mdp"
+            android:fontFamily="@font/opensanssemibold"
+            android:layout_gravity="end"
+            android:padding="@dimen/_6mdp"
             />
     </com.google.android.material.appbar.MaterialToolbar>
 
@@ -140,17 +152,5 @@
             android:text="Choose your light or dark theme preference"
             android:textColor="@color/lightBlack" />
     </LinearLayout>
-
-
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginBottom="@dimen/_16mdp"
-        android:text="Next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/llTheme"
-        app:layout_constraintStart_toStartOf="@+id/llTheme"
-        app:layout_constraintTop_toBottomOf="@+id/llTheme" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

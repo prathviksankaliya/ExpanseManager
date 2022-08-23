@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -69,8 +70,10 @@ public class UserDetailsFragment extends Fragment {
         spf = requireContext().getSharedPreferences("UserDetails", Context.MODE_PRIVATE);
         dialogCurrency = new Dialog(requireContext());
         dialogCurrency.setContentView(R.layout.currency_dialog_sample);
+        rdGropeCurrency = dialogCurrency.findViewById(R.id.rdGroup);
         dialogTheme = new Dialog(requireContext());
         dialogTheme.setContentView(R.layout.theme_dialog_sample);
+        rdGropeTheme = dialogTheme.findViewById(R.id.rdGroup);
 
         getProfile();
 
@@ -105,14 +108,14 @@ public class UserDetailsFragment extends Fragment {
             public void onClick(View view) {
                 if(spf.getBoolean("userProfile", false))
                 {
-                    getParentFragmentManager().beginTransaction().remove(UserDetailsFragment.this).replace(R.id.frMainContainer, new DashboardFragment()).addToBackStack(null).commit();
+                    getParentFragmentManager().beginTransaction().replace(R.id.frMainContainer, new DashboardFragment()).addToBackStack(null).commit();
                 }else{
-                    getParentFragmentManager().beginTransaction().remove(UserDetailsFragment.this).replace(R.id.frContainer, new OnBoardingFragment()).addToBackStack(null).commit();
+                    getParentFragmentManager().beginTransaction().replace(R.id.frContainer, new OnBoardingFragment()).addToBackStack(null).commit();
                 }
             }
         });
 
-        binding.btnNext.setOnClickListener(new View.OnClickListener() {
+        binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(binding.edNameText.getText().toString().length() <= 2)
@@ -122,7 +125,7 @@ public class UserDetailsFragment extends Fragment {
                             .setTextColor(getResources().getColor(R.color.white))
                             .show();
                     binding.edNameText.requestFocus();
-                }else if(!CheckImage || binding.igProfile.getDrawable() == null)
+                }else if(spf.getString("userImage", null) == null || binding.igProfile.getDrawable() == null)
                 {
                     Snackbar.make(binding.layout,"Please set your profile picture", Snackbar.LENGTH_LONG)
                             .setBackgroundTint(getResources().getColor(R.color.red))
@@ -133,9 +136,10 @@ public class UserDetailsFragment extends Fragment {
                 else{
                     SharedPreferences.Editor editor = spf.edit();
                     editor.putString("userName", binding.edNameText.getText().toString());
-                    editor.putString("userCurrency", binding.txCurrency.getText().toString());
+                    editor.putString("userCurrencyText", binding.txCurrency.getText().toString());
                     editor.putBoolean("userProfile", true);
                     editor.apply();
+                    Toast.makeText(requireContext(), "Profile Saved", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(requireContext(), MainActivity.class);
                     startActivity(intent);
                     requireActivity().finishAffinity();
@@ -215,7 +219,6 @@ public class UserDetailsFragment extends Fragment {
 
         dialogCurrency.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialogCurrency.show();
-        rdGropeCurrency = dialogCurrency.findViewById(R.id.rdGroup);
 
         rdGropeCurrency.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -227,10 +230,14 @@ public class UserDetailsFragment extends Fragment {
                 {
                     selectedBtn.setChecked(true);
                     binding.txCurrency.setText(selectedBtn.getText());
+                    SharedPreferences.Editor editor = spf.edit();
+                    editor.putInt("userCurrency", i);
+                    editor.apply();
                     dialogCurrency.dismiss();
                 }
             }
         });
+
     }
 
     private void getDialogTheme()
@@ -238,7 +245,7 @@ public class UserDetailsFragment extends Fragment {
         dialogTheme.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialogTheme.show();
 
-        rdGropeTheme = dialogTheme.findViewById(R.id.rdGroup);
+
         rdGropeTheme.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -252,17 +259,17 @@ public class UserDetailsFragment extends Fragment {
                     if(selectedBtn.getText().toString().equals("Light Theme"))
                     {
                         selectedBtn.setChecked(true);
-                        editor.putString("userTheme", "Light");
+                        editor.putInt("userTheme", i);
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                         requireActivity().recreate();
                     }else if(selectedBtn.getText().toString().equals("Dark Theme")){
                         selectedBtn.setChecked(true);
-                        editor.putString("userTheme", "Dark");
+                        editor.putInt("userTheme", i);
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                         requireActivity().recreate();
                     }else{
                         selectedBtn.setChecked(true);
-                        editor.putString("userTheme", "Device");
+                        editor.putInt("userTheme", i);
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                         requireActivity().recreate();
                     }
@@ -280,15 +287,28 @@ public class UserDetailsFragment extends Fragment {
         {
             String imgUrl = spf.getString("userImage", null);
             String name = spf.getString("userName", null);
-            String currency = spf.getString("userCurrency", null);
-            String theme = spf.getString("userTheme", null);
+            String currencyText = spf.getString("userCurrencyText", null);
+            int currency = spf.getInt("userCurrency", 0);
+            int theme = spf.getInt("userTheme", 0);
 
             encodeImageStringBitmap(imgUrl);
             binding.edNameText.setText(name);
-            binding.txCurrency.setText(currency);
+            binding.txCurrency.setText(currencyText);
+
+            if(currency == 0)
+            {
+                rdGropeCurrency.check(R.id.rdRupee);
+            }else{
+                rdGropeCurrency.check(currency);
+            }
+            if(theme == 0)
+            {
+                rdGropeTheme.check(R.id.rdDeviceTheme);
+            }else{
+                rdGropeTheme.check(theme);
+            }
 
         }
     }
-
 
 }
