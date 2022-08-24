@@ -53,11 +53,16 @@ public class DashboardFragment extends Fragment {
         getData();
 
         list.add(new LatestEntry(R.drawable.ic_baseline_restaurant_24, "Food", "₹", "400.00", "16 Sept", "2022", "12:34"));
+        list.add(new LatestEntry(R.drawable.ic_baseline_restaurant_24, "Food", "₹", "400.00", "16 Sept", "2022", "12:34"));
+        list.add(new LatestEntry(R.drawable.ic_baseline_restaurant_24, "Health", "₹", "100.00", "13 Sept", "2022", "09:34"));
         list.add(new LatestEntry(R.drawable.ic_baseline_restaurant_24, "Health", "₹", "100.00", "13 Sept", "2022", "09:34"));
         list.add(new LatestEntry(R.drawable.ic_baseline_restaurant_24, "Shopping", "₹", "2000.00", "12 Sept", "2022", "10:34"));
         list.add(new LatestEntry(R.drawable.ic_baseline_restaurant_24, "Travel", "₹", "500.00", "16 Sept", "2022", "12:34"));
+        list.add(new LatestEntry(R.drawable.ic_baseline_restaurant_24, "Travel", "₹", "500.00", "16 Sept", "2022", "12:34"));
+        list.add(new LatestEntry(R.drawable.ic_baseline_restaurant_24, "Utilities", "₹", "50.00", "04 Sept", "2022", "12:34"));
         list.add(new LatestEntry(R.drawable.ic_baseline_restaurant_24, "Utilities", "₹", "50.00", "04 Sept", "2022", "12:34"));
         list.add(new LatestEntry(R.drawable.ic_baseline_restaurant_24, "Bonus", "₹", "1000.00", "01 Sept", "2022", "12:34"));
+        list.add(new LatestEntry(R.drawable.ic_baseline_restaurant_24, "Salary", "₹", "20000.00", "27 Sept", "2022", "12:34"));
         list.add(new LatestEntry(R.drawable.ic_baseline_restaurant_24, "Salary", "₹", "20000.00", "27 Sept", "2022", "12:34"));
 
         adapter = new RvLatestEntryAdapter(requireContext(), list);
