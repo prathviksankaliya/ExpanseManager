@@ -307,7 +307,8 @@ public class UserDetailsFragment extends Fragment {
             }else{
                 rdGropeTheme.check(theme);
             }
-
+            requireActivity().findViewById(R.id.bottomAppBar).setVisibility(View.GONE);
+            requireActivity().findViewById(R.id.fabAdd).setVisibility(View.GONE);
         }
     }
 

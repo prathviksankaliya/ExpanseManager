@@ -49,6 +49,8 @@ public class DashboardFragment extends Fragment {
         spf = requireContext().getSharedPreferences("UserDetails", Context.MODE_PRIVATE);
         list = new ArrayList<>();
 
+        requireActivity().findViewById(R.id.bottomAppBar).setVisibility(View.VISIBLE);
+        requireActivity().findViewById(R.id.fabAdd).setVisibility(View.VISIBLE);
 
         getData();
 

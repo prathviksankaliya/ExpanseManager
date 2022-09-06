@@ -7,8 +7,10 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.navigation.NavigationBarView;
+import com.itcraftsolution.expansemanager.Fragments.AddExpenseFragment;
 import com.itcraftsolution.expansemanager.Fragments.DashboardFragment;
 import com.itcraftsolution.expansemanager.Fragments.StatesticsFragment;
 import com.itcraftsolution.expansemanager.databinding.ActivityMainBinding;
@@ -38,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frMainContainer, new StatesticsFragment()).addToBackStack(null).commit();
                 }
                 return true;
+            }
+        });
+
+        binding.fabAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.frMainContainer, new AddExpenseFragment()).addToBackStack(null).commit();
             }
         });
     }
