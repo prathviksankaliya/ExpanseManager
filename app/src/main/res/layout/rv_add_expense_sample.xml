@@ -1,34 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_3mdp"
+
+    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_10mdp"
+        android:elevation="@dimen/_2mdp"
+        android:layout_margin="@dimen/_5mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
-            android:layout_width="@dimen/_75mdp"
-            android:layout_height="@dimen/_80mdp"
-            android:background="@drawable/rv_intem_bg"
+            android:layout_width="@dimen/_63mdp"
+            android:layout_height="@dimen/_63mdp"
             android:gravity="center"
-            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/igFood"
+                android:id="@+id/igIconSample"
                 android:layout_width="@dimen/_35mdp"
                 android:layout_height="@dimen/_35mdp"
-                android:src="@drawable/ic_baseline_restaurant_24" />
-        </LinearLayout>
+                android:padding="@dimen/_8mdp"
+                android:src="@drawable/pieicon"
+                app:layout_constraintBottom_toTopOf="@+id/txCatNameSample"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/txCatNameSample"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_4mdp"
+                android:layout_marginTop="@dimen/_4mdp"
+                android:fontFamily="@font/opensanssemibold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="Food"
+                android:layout_marginBottom="@dimen/_3mdp"
+                android:textColor="@color/lightBlack"
+                android:textSize="@dimen/_11font_mdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/igIconSample" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
